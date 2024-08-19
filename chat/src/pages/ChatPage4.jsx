@@ -1,39 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const ChatPage4 = () => {
-  const [messages, setMessages] = useState([]);
+  // Initialize messages state with data from localStorage or an empty array
+  const [messages, setMessages] = useState(() => {
+    const storedMessages = localStorage.getItem("chatMessagesBakerman");
+    return storedMessages ? JSON.parse(storedMessages) : [];
+  });
+
   const [input, setInput] = useState("");
+
+  useEffect(() => {
+    // Save messages to localStorage whenever messages state changes
+    localStorage.setItem("chatMessagesBakerman", JSON.stringify(messages));
+  }, [messages]);
 
   const sendMessage = async () => {
     if (input.trim() !== "") {
       try {
-        // Make the POST request to the API
         const response = await axios.post("http://209.97.169.231:1000/chat/bakerman/", {
-          message: input, // Sending the message as `messagegf`
+          message: input,
         });
 
         // Update the message list with user message and bot response
-        setMessages([...messages,
+        setMessages([
+          ...messages,
           { type: "user", text: input },
-          { type: "bot", text: response.data.response }
+          { type: "bot", text: response.data.response },
         ]);
 
-        // Clear the input field
         setInput("");
       } catch (error) {
-        // Log the error for debugging
-        console.error("Error sending message:", error.response ?
-error.response.data : error.message);
+        console.error(
+          "Error sending message:",
+          error.response ? error.response.data : error.message
+        );
       }
     }
   };
+  const clearChat = () => {
+    setMessages([]);
+    localStorage.removeItem("chatMessages");
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+  };
+
 
   return (
     <div className="flex flex-col h-screen bg-gray-100">
       {/* Header */}
-      <div className="bg-green-600 text-white p-4 flex items-center">
+      <div className="bg-green-600 text-white p-4 flex items-center justify-between">
         <h1 className="text-lg font-semibold">BAKER-MAN</h1>
+        <button
+          onClick={clearChat}
+          className="bg-red-600 text-white px-4 py-2 rounded-lg"
+        >
+          Remove Chat
+        </button>
       </div>
 
       {/* Messages */}
@@ -63,6 +90,7 @@ error.response.data : error.message);
         <input
           type="text"
           value={input}
+          onKeyDown={handleKeyDown} 
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type a message"
           className="flex-1 p-2 border border-gray-300 rounded-lg"
