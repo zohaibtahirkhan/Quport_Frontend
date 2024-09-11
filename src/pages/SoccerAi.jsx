@@ -33,7 +33,7 @@ const SoccerAiPage = () => {
     setLoading(true);
     if (input.trim() !== "") {
       try {
-        const response = await axios.post("http://127.0.0.1:8000/chat/soccer/", {
+        const response = await axios.post("http://209.97.169.231:1000/chat/soccer/", {
           message: input,
         });
         // console.log("Response zohaib quport",response)
@@ -64,7 +64,7 @@ const SoccerAiPage = () => {
 
   const DeleteMessage = async () => {
     try {
-      const response = await axios.delete("http://127.0.0.1:8000/chat/soccer/");
+      const response = await axios.delete("http://209.97.169.231:1000/chat/soccer/");
       setDeleteMessage(response)
     } catch (error) {
       console.error(
@@ -104,7 +104,7 @@ const SoccerAiPage = () => {
       // Make the API call with concatenatedString
       setgenerating(true); // Set loading state to true before making the request
       try {
-        const response = await axios.post("http://127.0.0.1:8000/chat/quport/", {
+        const response = await axios.post("http://209.97.169.231:1000/chat/quport/", {
           message: concatenatedString, // Use the concatenated string here
         });
         console.log("this is regenerate", response);
