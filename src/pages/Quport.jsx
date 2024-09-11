@@ -31,7 +31,7 @@ const QuportPage = () => {
     setLoading(true);
     if (input.trim() !== "") {
       try {
-        const response = await axios.post("http://127.0.0.1:8000/chat/quport/", {
+        const response = await axios.post("http://209.97.169.231:1000/chat/quport/", {
           message: input,
         });
 
@@ -54,7 +54,7 @@ const QuportPage = () => {
 
   const DeleteMessage = async () => {
     try {
-      await axios.delete("http://127.0.0.1:8000/chat/quport/");
+      await axios.delete("http://209.97.169.231:1000/chat/quport/");
       clearChat();
     } catch (error) {
       console.error(
@@ -87,7 +87,7 @@ const QuportPage = () => {
   
       setGenerating(true);
       try {
-        const response = await axios.post("http://127.0.0.1:8000/chat/quport/", {
+        const response = await axios.post("http://209.97.169.231:1000/chat/quport/", {
           message: concatenatedString,
         });
 
