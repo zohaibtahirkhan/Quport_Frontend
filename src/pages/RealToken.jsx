@@ -32,7 +32,7 @@ const RealTokenPage = () => {
     setLoading(true);
     if (input.trim() !== "") {
       try {
-        const response = await axios.post("http://127.0.0.1:8000/chat/bakerman/", {
+        const response = await axios.post("http://209.97.169.231:1000/chat/bakerman/", {
           message: input,
         });
         // console.log("Response zohaib quport",response)
@@ -63,7 +63,7 @@ const RealTokenPage = () => {
 
   const DeleteMessage = async () => {
     try {
-      const response = await axios.delete("http://127.0.0.1:8000/chat/bakerman/");
+      const response = await axios.delete("http://209.97.169.231:1000/chat/bakerman/");
       setDeleteMessage(response)
     } catch (error) {
       console.error(
@@ -103,7 +103,7 @@ const RealTokenPage = () => {
       // Make the API call with concatenatedString
       setgenerating(true); // Set loading state to true before making the request
       try {
-        const response = await axios.post("http://127.0.0.1:8000/chat/quport/", {
+        const response = await axios.post("http://209.97.169.231:1000/chat/quport/", {
           message: concatenatedString, // Use the concatenated string here
         });
         console.log("this is regenerate", response);
