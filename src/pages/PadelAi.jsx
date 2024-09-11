@@ -31,7 +31,7 @@ const PadelaiPage = () => {
     setLoading(true);
     if (input.trim() !== "") {
       try {
-        const response = await axios.post("http://127.0.0.1:8000/chat/padel/", {
+        const response = await axios.post("http://209.97.169.231:1000/chat/padel/", {
           message: input,
         });
 
@@ -54,7 +54,7 @@ const PadelaiPage = () => {
 
   const DeleteMessage = async () => {
     try {
-      const response = await axios.delete("http://127.0.0.1:8000/chat/padel/");
+      const response = await axios.delete("http://209.97.169.231:1000/chat/padel/");
       setDeleteMessage(response)
     } catch (error) {
       console.error(
@@ -94,7 +94,7 @@ const PadelaiPage = () => {
       // Make the API call with concatenatedString
       setgenerating(true); // Set loading state to true before making the request
       try {
-        const response = await axios.post("http://127.0.0.1:8000/chat/padel/", {
+        const response = await axios.post("http://209.97.169.231:1000/chat/padel/", {
           message: concatenatedString, // Use the concatenated string here
         });
         console.log("this is regenerate", response);
