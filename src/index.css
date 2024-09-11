@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.main-container {
+    padding-left: 410px;
+    padding-top: 20px;
+  }
+  .main{
+    padding-top: 80px;
+  }
+  @media screen and (min-width: 220px) and (max-width: 768px) {
+    .main-container {
+      padding-left: 20px;
+    }
+  }
+  @media screen and (min-width: 769px) and (max-width: 1199px) {
+    .main-container {
+      padding-left: 250px;
+    }
+  }
