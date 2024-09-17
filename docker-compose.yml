@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  chatbot-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: chatbot-frontend
+    ports:
+      - "1001:80" 
+    restart: unless-stopped
